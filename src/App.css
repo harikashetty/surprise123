@@ -222,6 +222,16 @@ h1 {
   text-align: center;
   margin-top: 50px;
 }
+/* Slideshow image */
+.slideshow-img {
+  width: 50%;        /* reduce width to 60% of container */
+  max-width: 200px;  /* optional: set a maximum width */
+  height: auto;      /* keep aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease;
+  margin: 20px 0;
+}
 
 /* Container floats up/down + slight horizontal wobble */
 .floating-container {
