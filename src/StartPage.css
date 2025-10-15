@@ -1,47 +1,155 @@
-/* --- Start Page with Background Video --- */
-.start-page {
-  position: relative;
+/* 🌌 Background setup */
+.start-page-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  overflow: hidden;
 }
 
-.bg-video {
+/* Dark overlay to slightly dim the background */
+.start-page-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -1;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
 }
 
-.overlay {
-  text-align: center;
+/* Content container */
+.start-page-content {
+  position: relative;
+  z-index: 2;
   color: white;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  max-width: 900px;
+  padding: 20px;
 }
 
-.overlay h1 {
-  font-size: 3rem;
-  margin-bottom: 40px;
+/* 🎉 Happy Birthday 🎉 – Pink + Purple + Yellow gradient + floating */
+.start-page-heading {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff66c4, #b56bff, #ffe066);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 170, 255, 0.7);
+  margin-bottom: 10px;
+  animation: floatBottom 2.5s ease-in-out infinite alternate;
 }
 
-.overlay button {
-  padding: 15px 30px;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: linear-gradient(to right, #f43f5e, #fbbf24);
+/* 🎉My Friend! 🎊 – floating like emojis */
+.start-page-subheading {
+  font-size: 2.8rem;
+  font-weight: 700;
   color: white;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  animation: floatBottom 2.5s ease-in-out infinite alternate;
+}
+
+/* Message text */
+.start-page-message {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #fff8ff;
+  margin-bottom: 45px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* 🎈 Blinking Purple Gradient Button */
+.start-page-btn {
+  padding: 15px 45px;
+  font-size: 1.4rem;
   font-weight: bold;
-  transition: transform 0.2s;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #d66bff, #8a2be2);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: buttonBlink 1.6s infinite ease-in-out;
+  transition: transform 0.3s ease;
 }
 
-.overlay button:hover {
-  transform: scale(1.05);
+@keyframes buttonBlink {
+  0% {
+    opacity: 1;
+    box-shadow: 0 0 25px #d99cff;
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 35px #b366ff;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 25px #d99cff;
+  }
+}
+
+.start-page-btn:hover {
+  transform: scale(1.08);
+}
+
+/* 🎊 Floating emojis at bottom – gentle up/down */
+.start-page-emojis {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+}
+
+.start-page-emojis span {
+  font-size: 2.8rem;
+  animation: floatBottom 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatBottom {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .start-page-heading { font-size: 2.6rem; }
+  .start-page-subheading { font-size: 2rem; }
+  .start-page-message { font-size: 1rem; padding: 0 15px; }
+  .start-page-btn { font-size: 1rem; padding: 12px 28px; }
+  .start-page-emojis span { font-size: 2rem; }
+
+  /* Increase friend picture size for mobile */
+  .friend-pic {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Friend's profile picture */
+.friend-pic {
+  width: 200px;       /* Increased size */
+  height: 200px;      /* Increased size */
+  border-radius: 50%; /* Circle */
+  object-fit: cover;
+  border: 4px solid #fff;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease;
+}
+
+.friend-pic:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
 }

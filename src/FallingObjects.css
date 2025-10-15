@@ -9,21 +9,28 @@
   z-index: 1000; /* Above other content */
 }
 
-.falling-object {
+.confetti {
   position: absolute;
-  top: -50px; /* Start above the viewport */
+  top: -20px;
+  opacity: 0.9;
+  border-radius: 2px; /* small rectangles */
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  transform: rotate(0deg);
 }
 
+/* Falling animation */
 @keyframes fall {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+  }
   100% {
-    transform: translateY(120vh); /* Fall past the viewport */
-    opacity: 0.8;
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
   }
 }
