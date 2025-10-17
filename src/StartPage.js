@@ -4,7 +4,7 @@ import "./StartPage.css";
 
 function StartPage({ onStart }) {
   const backgroundImage = process.env.PUBLIC_URL + "/images/bg1.jpg";
-  const friendPic = process.env.PUBLIC_URL + "/images/photo6.jpg"; // put your friend's image here
+  const friendPic = process.env.PUBLIC_URL + "/images/photo10.jpg"; // put your friend's image here
 
   return (
     <div className="start-page-bg" style={{ backgroundImage: `url(${backgroundImage})` }}>

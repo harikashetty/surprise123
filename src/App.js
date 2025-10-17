@@ -6,6 +6,7 @@ import FallingObjects from "./FallingObjects";
 function App() {
   const [showMain, setShowMain] = useState(false);
   const [showSlideshow, setShowSlideshow] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [candlesLit, setCandlesLit] = useState(true);
   const [candleMessage, setCandleMessage] = useState("");
@@ -32,9 +33,10 @@ function App() {
   const startMusic = () => {
     const audio = ensureAudio();
     if (!musicStarted) {
-      audio.play()
+      audio
+        .play()
         .then(() => setMusicStarted(true))
-        .catch(err => console.log("Audio play error:", err));
+        .catch((err) => console.log("Audio play error:", err));
     }
   };
 
@@ -69,9 +71,9 @@ function App() {
   };
 
   const photos = [
-    "photo2.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg",
-    "photo8.jpg","photo9.jpg","photo10.jpg","photo11.jpg","photo13.jpg",
-    "photo14.jpg","photo15.jpg","photo16.jpg","photo17.jpg"
+    "photo2.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg", "photo7.jpg",
+    "photo8.jpg", "photo9.jpg", "photo10.jpg", "photo11.jpg", "photo13.jpg",
+    "photo14.jpg", "photo15.jpg", "photo16.jpg", "photo17.jpg"
   ];
 
   const photoCaptions = [
@@ -123,12 +125,38 @@ function App() {
         {!showSlideshow && (
           <button
             className="start-slideshow-btn"
-            onClick={() => setShowSlideshow(true)}
+            onClick={() => setShowPopup(true)}
           >
             Start Slideshow 📸
           </button>
         )}
       </div>
+
+      {/* Popup Section */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h2>💖 Get Ready!</h2>
+            <p>Press OK to go down and relive the best memories! 🎉</p>
+            <button
+              className="popup-btn ok"
+              onClick={() => {
+                setShowPopup(false);
+                setShowSlideshow(true);
+                // wait for slideshow to render, then scroll to it
+                setTimeout(() => {
+                  const slideshowSection = document.querySelector(".slideshow");
+                  if (slideshowSection) {
+                    slideshowSection.scrollIntoView({ behavior: "smooth", block: "center" });
+                  }
+                }, 600);
+              }}
+            >
+              ✅ OK
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Photos Grid */}
       <div className="media">
